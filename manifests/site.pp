@@ -43,11 +43,16 @@ node default {
   # Example:
   #   class { 'my_class': }
   # notify { "Hello, my name is ${::hostname}": }
-  file { '/etc/motd':
-  ensure  => file,
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => "Added in Lab 7.1 \n",
+  #file { '/etc/motd':
+  #ensure  => file,
+  #owner   => 'root',
+  #group   => 'root',
+  #mode    => '0644',
+  #content => "Added in Lab 7.1 \n",
+  #}
+  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+  path => '/usr/bin:/usr/local/bin',
+  creates => '/etc/motd',
+  unless => '/bin/grep -F "Welcome to" /etc/motd'
   }
 }
