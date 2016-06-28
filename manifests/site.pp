@@ -48,6 +48,6 @@ node default {
   owner   => 'root',
   group   => 'root',
   mode    => '0644',
-  content => "Added in Lab 7.1\n",
+  content => "Added in Lab 7.1 \n",
   }
 }
