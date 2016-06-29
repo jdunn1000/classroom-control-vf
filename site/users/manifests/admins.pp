@@ -1,12 +1,12 @@
-define users::managed_user (
-$group = $title,
-) {
-user { $title:
-ensure => present,
+class users::admins {
+users::managed_user { 'joe': }
+users::managed_user { 'alice':
+group => 'staff',
 }
-file { "/home/${title}":
-ensure => directory,
-owner => $title,
-group => $group,
+users::managed_user { 'aaron':
+group => 'staff',
+}
+group { 'staff':
+ensure => present,
 }
 }
