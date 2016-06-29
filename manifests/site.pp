@@ -50,9 +50,16 @@ node default {
   #mode    => '0644',
   #content => "Added in Lab 7.1 \n",
   #}
+  
   exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
   path => '/usr/bin:/usr/local/bin',
   creates => '/etc/motd',
   }
+  
   class { 'users': }
+  
+  host { 'testing.puppetlabs.vm':
+    ensure  => present,
+    ip      => '127.0.0.1',
+    }
 }
