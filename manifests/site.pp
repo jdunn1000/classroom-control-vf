@@ -40,7 +40,7 @@ ini_setting { 'random ordering':
 
 node default {
   ### CLASSES
-  class { 'users': }
+  #class { 'users': }
   class { 'skeleton': }
   
   ### EXEC
