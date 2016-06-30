@@ -38,27 +38,35 @@ ini_setting { 'random ordering':
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-node default {
+#node default {
+#
+# ### NOTIFY
+#  if $::virtual != 'physical' {
+#  $vmname = capitalize($::virtual)
+#  notify { "This is a ${vmname} virtual machine.": }
+#  }
+#  
+#  ### CLASSES
+#  #class { 'users': }
+#  class { 'skeleton': }
+#  
+#  ### EXEC
+#  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+#  path => '/usr/bin:/usr/local/bin',
+#  creates => '/etc/motd',
+#  }
+#  
+#  ### HOST
+#  host { 'testing.puppetlabs.vm':
+#    ensure  => present,
+#    ip      => '127.0.0.1',
+#    }
+#}
 
-  ### NOTIFY
-  if $::virtual != 'physical' {
-  $vmname = capitalize($::virtual)
-  notify { "This is a ${vmname} virtual machine.": }
-  }
-  
-  ### CLASSES
-  #class { 'users': }
-  class { 'skeleton': }
-  
-  ### EXEC
-  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
-  path => '/usr/bin:/usr/local/bin',
-  creates => '/etc/motd',
-  }
-  
-  ### HOST
-  host { 'testing.puppetlabs.vm':
-    ensure  => present,
-    ip      => '127.0.0.1',
-    }
+node default {
+# This is where you can declare classes for all nodes.
+# Example:
+# class { 'my_class': }
+$message = hiera('message')
+notify { $message: }
 }
