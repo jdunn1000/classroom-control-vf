@@ -71,8 +71,12 @@ ini_setting { 'random ordering':
 #notify { $message: }
 #}
 
+#node default {
+#class { 'nginx':
+#root => '/var/www/html',
+#}
+#}
+
 node default {
-class { 'nginx':
-root => '/var/www/html',
-}
+include nginx
 }
